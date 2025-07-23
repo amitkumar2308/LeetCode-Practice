@@ -22,11 +22,11 @@ Through these problems, I consistently practice and improve:
 ---
 
 ## 📈 My LeetCode Stats
-![LeetCode Stats](https://leetcard.jacoblin.cool/amitkumar2308?theme=dark&font=JetBrains%20Mono&ext=heatmap)
+![LeetCode Stats](https://leetcard.jacoblin.cool/amitk2308?theme=dark&font=JetBrains%20Mono&ext=heatmap)
 
 *(Auto-updated card showing problems solved & activity)*
 
 ---
 
 ## 📂 Repository Structure
-Each problem is stored as:
+Each problem is stored as:LC Problem Number-"Problem Name"
