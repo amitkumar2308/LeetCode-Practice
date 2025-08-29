@@ -24,25 +24,30 @@ public:
     int numDecodings(string s){
         int n = s.size();
         if(n==0 || s[0]=='0') return 0; 
-        vector<int>dp(n+1,0);
+        //vector<int>dp(n+1,0);
 
-        dp[0] = 1;
-        dp[1] = 1;
+        int prev2 = 1; //dp[0]
+        int prev1= 1;  //dp[1]  (since s[0] != '0')
 
         for(int i=2; i<=n; i++){
+        int curr = 0;
         if(s[i-1]!='0')
-            dp[i] += dp[i-1]; //take single digit
+            curr += prev1; //take single digit
         
         int two = (s[i-2]-'0')*10 + (s[i-1]-'0');
-        if(two>=10 && two<=26){
-            dp[i] += dp[i-2];
-        }
+        if(two>=10 && two<=26)
+            curr += prev2;
+
+            prev2 = prev1;
+            prev1 = curr;
+        
+
 
         }
 
 
 
 
-        return dp[n];
+        return prev1;
     }
 };
