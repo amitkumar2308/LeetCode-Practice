@@ -7,7 +7,7 @@ public:
         if(nums[i]==nums[i+1]){
             return nums[i];
         }
-       }
+     }
        return -1;
     }
 };
