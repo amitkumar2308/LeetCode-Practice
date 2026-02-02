@@ -7,12 +7,11 @@ public:
         int sell = 0;
 
         for(int i=0; i<n; i++){
-        buy = min(buy,prices[i]);
-        sell = max(sell,prices[i]-buy);
+            buy = min(buy,prices[i]);
+            sell = max(sell,prices[i]-buy);
         }
-        return sell;
 
         
-
+    return sell;
     }
 };
