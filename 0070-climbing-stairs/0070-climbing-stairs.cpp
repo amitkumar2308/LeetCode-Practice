@@ -1,22 +1,13 @@
 class Solution {
 public:
-    int noofpath(int i,int &n, vector<int>& dp){
-        if(i>n){
-            return 0;
-        }
-        if(i==n){
-           return 1;
-        }
+    int solve(int n){
+        if(n==0) return 1;
+        if(n==1) return 1;
 
-        if(dp[i]!=-1){
-            return dp[i];
-        }
-
-        return dp[i] =  noofpath(i+1,n,dp)+noofpath(i+2,n,dp);
+        return solve(n-1) + solve(n-2);
 
     }
     int climbStairs(int n) {
-        vector<int>dp(n+1,-1);
-        return noofpath(0,n,dp);
+       return solve(n);
     }
 };
