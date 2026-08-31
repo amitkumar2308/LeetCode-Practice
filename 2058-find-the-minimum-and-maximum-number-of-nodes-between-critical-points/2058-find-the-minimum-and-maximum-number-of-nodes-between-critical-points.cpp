@@ -11,49 +11,60 @@
 
 class Solution {
 public:
-    bool isCritical(ListNode* prev, ListNode* curr, ListNode* next){
-         if(curr->val>prev->val && curr->val>next->val) return true;
-         if(curr->val<prev->val && curr->val<next->val) return true;
-         return false;
+    // 2nd step
+    bool isCritical(ListNode* prev, ListNode* curr, ListNode* next) {
+        if (curr->val > prev->val && curr->val > next->val)
+            return true; // local maxima
+        if (curr->val < prev->val && curr->val < next->val)
+            return true; // local minima
 
+        return false;
     }
+
     vector<int> nodesBetweenCriticalPoints(ListNode* head) {
-           ListNode* prev = head;
-           ListNode* curr = head->next;
-           ListNode* next = head->next->next;
 
-           int pos = 2;
-             
-           int firstCritical = -1;
-           int previousCritical = -1;
+        // ist step
+        ListNode* prev = head;
+        ListNode* curr = head->next;
+        ListNode* next = head->next->next;
 
-           int minDistance = INT_MAX;
+        int pos = 2; // 3rd step
 
-           while(next!=nullptr){
-                if(isCritical(prev,curr,next)){
-                   if(firstCritical == -1){
-                      firstCritical = pos;
-                      previousCritical = pos;
-                   }else{
-                     int distance = pos-previousCritical;
-                     minDistance = min(minDistance,distance);
+        // 4thstep
 
-                     previousCritical = pos;
-                   }
+        int firstCritical = -1;
+        int prevCritical = -1;
+        int minDistance = INT_MAX;
+
+        while (next != nullptr) {
+
+            if (isCritical(prev, curr, next)) {
+                if (firstCritical == -1) {
+                    firstCritical = pos;
+                    prevCritical = pos;
+                } else {
+                    int distance = pos - prevCritical; // 5th step
+                    minDistance = min(minDistance, distance);
+                    prevCritical = pos;
                 }
+            }
 
-                prev = curr;
-                curr = next;
-                next = next->next;
+            prev = curr;
+            curr = next;
+            next = next->next;
 
-                pos++;
-           }
-           if(firstCritical == -1 || firstCritical == previousCritical){
-            return {-1,-1};
-           }
-           int maxDistance = previousCritical - firstCritical;
+            pos++; // 6th step
+        }
 
-           return {minDistance,maxDistance};
+        // 7th step
+        if (firstCritical == -1 || firstCritical == prevCritical) {
+            return {-1, -1};
+        }
 
+        // 8th step
+
+        int maxDistance = prevCritical - firstCritical;
+
+        return {minDistance, maxDistance};
     }
 };
