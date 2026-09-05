@@ -4,7 +4,6 @@ public:
         int n = nums.size();
 
         vector<int>suffixMin(n);
-        
         suffixMin[n-1] = nums[n-1];
 
         for(int i=n-2; i>=0; i--){
@@ -12,15 +11,13 @@ public:
         }
 
         int maxi = INT_MIN;
-        //int ans = 0;
         for(int i=0; i<n; i++){
             maxi = max(maxi,nums[i]);
 
             if(maxi-suffixMin[i]<=k){
-               return i;
+                return i;
             }
-       
         }
-    return -1;
+        return -1;
     }
 };
