@@ -1,24 +1,28 @@
 class Solution {
 public:
-      vector<string> ans;
+    vector<string> ans;
 
-    void backtrack(string curr, int open, int close, int n){
-        if(curr.length()==2*n){
+    void solve(int n, int open, int close, string curr) {
+
+        // Complete valid combination
+        if (curr.size() == 2 * n) {
             ans.push_back(curr);
             return;
         }
 
-        if(open<n){
-            backtrack(curr + "(",open+1,close,n);
+        // Choice 1: add '('
+        if (open < n) {
+            solve(n, open + 1, close, curr + '(');
         }
 
-        if(close<open){
-            backtrack(curr+")",open,close+1,n);
+        // Choice 2: add ')'
+        if (close < open) {
+            solve(n, open, close + 1, curr + ')');
         }
-
     }
+
     vector<string> generateParenthesis(int n) {
-        backtrack("",0,0,n);
+        solve(n, 0, 0, "");
         return ans;
     }
 };
